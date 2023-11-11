@@ -25,7 +25,6 @@ function playRound (playerSelection, computerSelection) {
 
     //to allow for case-insensitive input
     playerSelection = playerSelection.toLowerCase();
-    computerSelection = computerSelection.toLowerCase();
 
     if (playerSelection === "rock") {
         if (computerSelection === "rock") {
@@ -54,8 +53,31 @@ function playRound (playerSelection, computerSelection) {
     }
 }
 
-let playerSelection = "rocK";
-let computerSelection = getComputerChoice();
-console.log(computerSelection);
-console.log(playRound(playerSelection, computerSelection));
+//function for game play
+function game () {
+    
+    let playerSelection;
+    let computerSelection;
+
+    //if true continue playing
+    let play = true;
+
+    //allow to continuously play game until player decides to quit
+    do {
+
+        playerSelection = prompt("Enter Rock, Paper, or Scissors\n");
+        computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+
+        let continuePlay = prompt("Do you want to try again? Enter YES or NO\n");
+        continuePlay = continuePlay.toLowerCase();
+
+        if (continuePlay === "no") {
+            play = false;
+        }
+
+    } while (play);
+}
+
+game();
 
