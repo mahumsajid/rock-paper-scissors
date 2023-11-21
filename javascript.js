@@ -23,29 +23,31 @@ function getComputerChoice () {
 //function to play one round of game
 function playRound (playerSelection, computerSelection) {
 
-    //to allow for case-insensitive input
-    playerSelection = playerSelection.toLowerCase();
-
     if (playerSelection === "rock") {
         if (computerSelection === "rock") {
             return "It's a tie!";
         } else if (computerSelection === "paper") {
             return "You lose! Paper beats Rock";
         } else {
+
             return "You win! Rocks beats Scissors";
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
+            //playerScore++;
             return "You win! Paper beats Rock";
         } else if (computerSelection === "paper") {
             return "It's a tie!";
         } else {
+            //compScore++;
             return "You lose! Scissors beat Paper";
         }
     } else {
         if (computerSelection === "rock") {
+            //compScore++;
             return "You lose! Rock beats Scissors";
         } else if (computerSelection === "paper") {
+            //playerScore++;
             return "You win! Scissors beats Paper";
         } else {
             return "It's a tie!";
@@ -59,25 +61,59 @@ function game () {
     let playerSelection;
     let computerSelection;
 
+    let round = 1;
+
+    let playerScore = 0;
+    let compScore = 0;
+
     //if true continue playing
-    let play = true;
+    let play = false;
+
+    //gameUI();
+
+    let rock = document.createElement('button');
+    let paper = document.createElement('button');
+    let scissors = document.createElement('button');
+    let div = document.querySelector('.container');
+
+    //rock.classList.add("rock");
+    //paper.classList.add("paper");
+    //scissors.classList.add("scissors");
+
+    rock.textContent = "rock";
+    paper.textContent = 'paper';
+    scissors.textContent = 'scissors';
+
+    div.appendChild(rock);
+    div.appendChild(paper);
+    div.appendChild(scissors);
+
+    //console.log(playerSelection);
+    
+
+        //helper function for addEventListener to choose rock, paper, or scissors 
+    //when corresponding button clicked
 
     //allow to continuously play game until player decides to quit
     do {
+        
+        //while (round < 5) {
 
-        playerSelection = prompt("Enter Rock, Paper, or Scissors\n");
-        computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-
-        let continuePlay = prompt("Do you want to try again? Enter YES or NO\n");
+       // }
+        
+        /*let continuePlay = prompt("Do you want to try again? Enter YES or NO\n");
         continuePlay = continuePlay.toLowerCase();
 
         if (continuePlay === "no") {
             play = false;
         }
+        */
+        
+        
 
     } while (play);
 }
 
 game();
+
 
