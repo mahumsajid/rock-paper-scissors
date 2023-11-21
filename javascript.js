@@ -96,7 +96,6 @@ function game () {
     //when corresponding button clicked
 
     //allow to continuously play game until player decides to quit
-    do {
 
         function playerButtonSelection (event) {
 
@@ -106,6 +105,16 @@ function game () {
                 console.log(playRound(playerSelection, computerSelection));
                 round++;
             }
+
+            
+            if (round > 5) {
+                rock.removeEventListener("click", playerButtonSelection);
+                paper.removeEventListener("click", playerButtonSelection);
+                scissors.removeEventListener("click", playerButtonSelection);
+                //continuePlay();
+            }
+            
+            
     
             console.log(round);
     
@@ -123,9 +132,19 @@ function game () {
         }
         */
         
-        
+}
 
-    } while (play);
+function continuePlay () {
+
+    let playAgain = document.createElement("button");
+    let display = document.querySelector(".display");
+
+    playAgain.textContent = "Play Again?";
+
+    display.appendChild(playAgain);
+
+    playAgain.addEventListener("click", game);
+    
 }
 
 game();
