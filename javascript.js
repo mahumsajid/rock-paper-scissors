@@ -74,19 +74,20 @@ function game () {
     let rock = document.createElement('button');
     let paper = document.createElement('button');
     let scissors = document.createElement('button');
-    let div = document.querySelector('.container');
+    let div = document.querySelector(".container");
 
     //rock.classList.add("rock");
     //paper.classList.add("paper");
     //scissors.classList.add("scissors");
 
-    rock.textContent = "rock";
-    paper.textContent = 'paper';
-    scissors.textContent = 'scissors';
+    rock.textContent = "ROCK";
+    paper.textContent = "PAPER";
+    scissors.textContent = "SCISSORS";
 
     div.appendChild(rock);
     div.appendChild(paper);
     div.appendChild(scissors);
+    
 
     //console.log(playerSelection);
     
@@ -100,7 +101,7 @@ function game () {
         function playerButtonSelection (event) {
 
             if (round <= 5) {
-                playerSelection = event.target.textContent;
+                playerSelection = event.target.textContent.toLowerCase();
                 computerSelection = getComputerChoice();
                 console.log(playRound(playerSelection, computerSelection));
                 round++;

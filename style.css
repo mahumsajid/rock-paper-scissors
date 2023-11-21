@@ -1,0 +1,40 @@
+* {
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 5.5vw;
+    margin: 25px;
+}
+
+h2 {
+    font-size: 3.5vw;
+    margin-top: 30px;
+}
+
+.display {
+    height: 35vh;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 100%;
+}
+
+button {
+   background-color: grey; 
+   color: white;
+   width: 25vw;
+   height: 30vh;
+   font-size: 4vw;
+   font-weight: bolder;
+}
+
+.player-selection {
+    background-color: darkgray;
+}
