@@ -96,10 +96,23 @@ function game () {
 
     //allow to continuously play game until player decides to quit
     do {
-        
-        //while (round < 5) {
 
-       // }
+        function playerButtonSelection (event) {
+
+            if (round <= 5) {
+                playerSelection = event.target.textContent;
+                computerSelection = getComputerChoice();
+                console.log(playRound(playerSelection, computerSelection));
+                round++;
+            }
+    
+            console.log(round);
+    
+        }
+    
+        rock.addEventListener('click', playerButtonSelection);
+        paper.addEventListener('click', playerButtonSelection);
+        scissors.addEventListener('click', playerButtonSelection);
         
         /*let continuePlay = prompt("Do you want to try again? Enter YES or NO\n");
         continuePlay = continuePlay.toLowerCase();
