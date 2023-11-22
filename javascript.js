@@ -21,15 +21,18 @@ function playRound (playerSelection, computerSelection, scores) {
     (playerSelection === "paper" && computerSelection === "rock") ||
     (playerSelection === "scissors" && computerSelection === "paper")) {
         
-        return scores[0] = scores[0] + 1;
-        
+        //add to player's score by 1
+        scores[0] = scores[0] + 1;
+
     } else if ((playerSelection === "rock" && computerSelection === "paper") || 
     (playerSelection === "paper" && computerSelection === "scissors") ||
     (playerSelection === "scissors" && computerSelection === "rock")) {
             
-        return scores[1] = scores[1] + 1;
+        //add to computer's score by 1
+        scores[1] = scores[1] + 1;
         
     }
+
 }
 
 //function for game play
@@ -51,7 +54,7 @@ function game () {
     let rock = document.createElement('button');
     let paper = document.createElement('button');
     let scissors = document.createElement('button');
-    let div = document.querySelector(".container");
+    let container = document.querySelector(".container");
 
     //rock.classList.add("rock");
     //paper.classList.add("paper");
@@ -61,11 +64,12 @@ function game () {
     paper.textContent = "PAPER";
     scissors.textContent = "SCISSORS";
 
-    div.appendChild(rock);
-    div.appendChild(paper);
-    div.appendChild(scissors);
+    container.appendChild(rock);
+    container.appendChild(paper);
+    container.appendChild(scissors);
 
     let endMsg = document.createElement("h2");
+    let display = document.querySelector(".display");
     
 
     //console.log(playerSelection);
@@ -82,6 +86,7 @@ function game () {
                 playerSelection = event.target.textContent.toLowerCase();
                 computerSelection = getComputerChoice();
                 playRound(playerSelection, computerSelection, scores);
+                console.log(scores);
                 round++;
             }
 
@@ -90,6 +95,16 @@ function game () {
                 rock.removeEventListener("click", playerButtonSelection);
                 paper.removeEventListener("click", playerButtonSelection);
                 scissors.removeEventListener("click", playerButtonSelection);
+
+                if (scores[0] > scores[1]) {
+                    endMsg.textContent = "You Win!";
+                } else if (scores[0] < scores[1]) {
+                    endMsg.textContent = "You Lose";
+                } else {
+                    endMsg.textContent = "It's a Tie!";
+                }
+
+                display.appendChild(endMsg);
                 //continuePlay();
             }
             
