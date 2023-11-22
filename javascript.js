@@ -1,15 +1,10 @@
-//numbers respresenting the options to be randomly selected
 const ROCK = 0, PAPER = 1, SCISSORS = 2;
 
-//function to get computer's selection
 function getComputerChoice () {
 
     //randomly select a number that represents rock, paper, or scissors
-    //and assign to choice variable
     let choice = Math.floor(Math.random() * 3);
 
-    //if choice is equal to number chosen to represent that output 
-    //then return that selection
     if (choice === ROCK) {
         return "rock";
     } else if (choice === PAPER) {
@@ -20,7 +15,6 @@ function getComputerChoice () {
 
 }
 
-//function to play one round of game
 function playRound (playerSelection, computerSelection) {
 
     if (playerSelection === "rock") {
@@ -87,6 +81,8 @@ function game () {
     div.appendChild(rock);
     div.appendChild(paper);
     div.appendChild(scissors);
+
+    let endMsg = document.createElement("h2");
     
 
     //console.log(playerSelection);
@@ -102,7 +98,7 @@ function game () {
             if (round <= 5) {
                 playerSelection = event.target.textContent.toLowerCase();
                 computerSelection = getComputerChoice();
-                console.log(playRound(playerSelection, computerSelection));
+                playRound(playerSelection, computerSelection);
                 round++;
             }
 
