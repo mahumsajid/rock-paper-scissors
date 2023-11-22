@@ -56,10 +56,6 @@ function game () {
     let scissors = document.createElement('button');
     let container = document.querySelector(".container");
 
-    //rock.classList.add("rock");
-    //paper.classList.add("paper");
-    //scissors.classList.add("scissors");
-
     rock.textContent = "ROCK";
     paper.textContent = "PAPER";
     scissors.textContent = "SCISSORS";
@@ -68,19 +64,17 @@ function game () {
     container.appendChild(paper);
     container.appendChild(scissors);
 
-    let endMsg = document.createElement("h2");
+    let displayMsg = document.createElement("h2");
+    displayMsg.textContent = "Let's Play! Select Rock, Paper, or Scissors to Start";
     let display = document.querySelector(".display");
+    display.appendChild(displayMsg);
     
-
-    //console.log(playerSelection);
-    
-
-        //helper function for addEventListener to choose rock, paper, or scissors 
-    //when corresponding button clicked
 
     //allow to continuously play game until player decides to quit
 
         function playerButtonSelection (event) {
+
+            if (round === 1) display.removeChild(displayMsg);
 
             if (round <= 5) {
                 playerSelection = event.target.textContent.toLowerCase();
@@ -97,14 +91,14 @@ function game () {
                 scissors.removeEventListener("click", playerButtonSelection);
 
                 if (scores[0] > scores[1]) {
-                    endMsg.textContent = "You Win!";
+                    displayMsg.textContent = "You Win!";
                 } else if (scores[0] < scores[1]) {
-                    endMsg.textContent = "You Lose";
+                    displayMsg.textContent = "You Lose";
                 } else {
-                    endMsg.textContent = "It's a Tie!";
+                    displayMsg.textContent = "It's a Tie!";
                 }
 
-                display.appendChild(endMsg);
+                display.appendChild(displayMsg);
                 //continuePlay();
             }
             

@@ -8,6 +8,7 @@
 h1 {
     font-size: 5.5vw;
     margin: 25px;
+    margin-bottom: 0px;
 }
 
 h2 {
@@ -16,7 +17,10 @@ h2 {
 }
 
 .display {
-    height: 35vh;
+    height: 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .container {
