@@ -15,37 +15,20 @@ function getComputerChoice () {
 
 }
 
-function playRound (playerSelection, computerSelection) {
+function playRound (playerSelection, computerSelection, scores) {
 
-    if (playerSelection === "rock") {
-        if (computerSelection === "rock") {
-            return "It's a tie!";
-        } else if (computerSelection === "paper") {
-            return "You lose! Paper beats Rock";
-        } else {
-
-            return "You win! Rocks beats Scissors";
-        }
-    } else if (playerSelection === "paper") {
-        if (computerSelection === "rock") {
-            //playerScore++;
-            return "You win! Paper beats Rock";
-        } else if (computerSelection === "paper") {
-            return "It's a tie!";
-        } else {
-            //compScore++;
-            return "You lose! Scissors beat Paper";
-        }
-    } else {
-        if (computerSelection === "rock") {
-            //compScore++;
-            return "You lose! Rock beats Scissors";
-        } else if (computerSelection === "paper") {
-            //playerScore++;
-            return "You win! Scissors beats Paper";
-        } else {
-            return "It's a tie!";
-        }
+    if ((playerSelection === "rock" && computerSelection === "scissors") || 
+    (playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissors" && computerSelection === "paper")) {
+        
+        return scores[0] = scores[0] + 1;
+        
+    } else if ((playerSelection === "rock" && computerSelection === "paper") || 
+    (playerSelection === "paper" && computerSelection === "scissors") ||
+    (playerSelection === "scissors" && computerSelection === "rock")) {
+            
+        return scores[1] = scores[1] + 1;
+        
     }
 }
 
@@ -57,8 +40,8 @@ function game () {
 
     let round = 1;
 
-    let playerScore = 0;
-    let compScore = 0;
+    //scores where index 0 shows the player's score and index 1 shows the computer's
+    let scores = [0, 0];
 
     //if true continue playing
     let play = false;
@@ -98,7 +81,7 @@ function game () {
             if (round <= 5) {
                 playerSelection = event.target.textContent.toLowerCase();
                 computerSelection = getComputerChoice();
-                playRound(playerSelection, computerSelection);
+                playRound(playerSelection, computerSelection, scores);
                 round++;
             }
 
