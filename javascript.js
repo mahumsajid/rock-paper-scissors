@@ -96,27 +96,32 @@ function game () {
                 playerSelection = event.target.textContent.toLowerCase();
                 computerSelection = getComputerChoice();
                 playRound(playerSelection, computerSelection, scores);
-                displayMsg.textContent = playerSelection.toUpperCase() + " vs. " +
+                displayMsg.textContent = playerSelection.toUpperCase() + "\r\tvs\r\t" +
                     computerSelection.toUpperCase();
                 display.appendChild(displayMsg);
+                let playerScore = document.querySelector(".player-score");
+                let compScore = document.querySelector(".comp-score");
+                playerScore.textContent = scores[0];
+                compScore.textContent = scores[1];
                 round++;
             }
 
-            
             if (round > 5) {
                 rock.removeEventListener("click", playerButtonSelection);
                 paper.removeEventListener("click", playerButtonSelection);
                 scissors.removeEventListener("click", playerButtonSelection);
 
-                if (scores[0] > scores[1]) {
-                    displayMsg.textContent = "You Win!";
-                } else if (scores[0] < scores[1]) {
-                    displayMsg.textContent = "You Lose";
-                } else {
-                    displayMsg.textContent = "It's a Tie!";
-                }
+                setTimeout(() => {
+                    if (scores[0] > scores[1]) {
+                        displayMsg.textContent = "You Win!";
+                    } else if (scores[0] < scores[1]) {
+                        displayMsg.textContent = "You Lose";
+                    } else {
+                        displayMsg.textContent = "It's a Tie!";
+                    }
+                }, 1500);
 
-                display.appendChild(displayMsg);
+                //display.appendChild(displayMsg);
                 //continuePlay();
             } 
     
