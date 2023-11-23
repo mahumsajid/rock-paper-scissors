@@ -81,8 +81,6 @@ function game () {
         function playerButtonSelection (event) {
 
             if (round === 1) {
-                display.removeChild(displayMsg);
-                h1.textContent = `Round ${round}`;
                 header.style.justifyContent = "space-between";
                 scoresDisplay.forEach((scoreDisplay) => {
                         scoreDisplay.style.width = "24vw";
@@ -93,10 +91,14 @@ function game () {
             }
 
             if (round <= 5) {
+                display.removeChild(displayMsg);
+                h1.textContent = "ROUND " + round;
                 playerSelection = event.target.textContent.toLowerCase();
                 computerSelection = getComputerChoice();
                 playRound(playerSelection, computerSelection, scores);
-                console.log(scores);
+                displayMsg.textContent = playerSelection.toUpperCase() + " vs. " +
+                    computerSelection.toUpperCase();
+                display.appendChild(displayMsg);
                 round++;
             }
 
@@ -116,9 +118,7 @@ function game () {
 
                 display.appendChild(displayMsg);
                 //continuePlay();
-            }
-            
-            
+            } 
     
             console.log(round);
     
