@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: aliceblue;
+}
+
 header {
     display: flex;
     justify-content: space-evenly;
@@ -42,15 +46,15 @@ h1 {
     font-weight: 900;
     margin: 25px;
     margin-bottom: 0px;
+    color: grey;
 }
 
 h2 {
     font-size: 3.5vw;
-    margin-top: 30px;
 }
 
 .display {
-    height: 40vh;
+    height: 37vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,6 +74,7 @@ button {
    height: 30vh;
    font-size: 4vw;
    font-weight: bolder;
+   border-radius: 10px;
 }
 
 .player-selection {
