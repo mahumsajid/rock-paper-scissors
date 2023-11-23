@@ -71,13 +71,26 @@ function game () {
     displayMsg.textContent = "Best out of 5\r\nSelect Rock, Paper, or Scissors to Start";
     let display = document.querySelector(".display");
     display.appendChild(displayMsg);
+    let h1 = document.querySelector("h1");
+    let scoresDisplay = document.querySelectorAll(".score");
+    let header = document.querySelector("header");
     
 
     //allow to continuously play game until player decides to quit
 
         function playerButtonSelection (event) {
 
-            if (round === 1) display.removeChild(displayMsg);
+            if (round === 1) {
+                display.removeChild(displayMsg);
+                h1.textContent = `Round ${round}`;
+                header.style.justifyContent = "space-between";
+                scoresDisplay.forEach((scoreDisplay) => {
+                        scoreDisplay.style.width = "24vw";
+                        scoreDisplay.style.fontSize = "2vw";
+                        scoreDisplay.style.margin = "0 40px";
+                    }
+                );
+            }
 
             if (round <= 5) {
                 playerSelection = event.target.textContent.toLowerCase();
