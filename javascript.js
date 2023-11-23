@@ -65,7 +65,10 @@ function game () {
     container.appendChild(scissors);
 
     let displayMsg = document.createElement("h2");
-    displayMsg.textContent = "Let's Play! Select Rock, Paper, or Scissors to Start";
+
+    displayMsg.setAttribute("style", "white-space: pre;");
+
+    displayMsg.textContent = "Best out of 5\r\nSelect Rock, Paper, or Scissors to Start";
     let display = document.querySelector(".display");
     display.appendChild(displayMsg);
     
