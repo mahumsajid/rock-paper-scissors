@@ -46,11 +46,6 @@ function game () {
     //scores where index 0 shows the player's score and index 1 shows the computer's
     let scores = [0, 0];
 
-    //if true continue playing
-    let play = false;
-
-    //gameUI();
-
     let rock = document.createElement('button');
     let paper = document.createElement('button');
     let scissors = document.createElement('button');
@@ -65,12 +60,12 @@ function game () {
     container.appendChild(scissors);
 
     let displayMsg = document.createElement("h2");
-
     displayMsg.setAttribute("style", "white-space: pre;");
-
     displayMsg.textContent = "Best out of 5\r\nSelect Rock, Paper, or Scissors to Start";
+    
     let display = document.querySelector(".display");
     display.appendChild(displayMsg);
+    
     let h1 = document.querySelector("h1");
     let scoresDisplay = document.querySelectorAll(".score");
     let header = document.querySelector("header");
@@ -79,42 +74,40 @@ function game () {
     let compScore = document.querySelector(".comp-score");
     let playAgain = document.createElement("button");
     let btnContainer = document.createElement("div");
+
     playAgain.textContent = "PLAY AGAIN?";
     playAgain.classList.add("play-again");
     btnContainer.classList.add("btnContainer");
+    
     btnContainer.appendChild(playAgain);
 
-    
+    function playerButtonSelection (event) {
 
-    //allow to continuously play game until player decides to quit
+        //change from title to display rounds
+        if (round === 1) {
+            header.style.justifyContent = "space-between";
+            scoresDisplay.forEach((scoreDisplay) => {
+                scoreDisplay.style.width = "24vw";
+                scoreDisplay.style.fontSize = "2vw";
+                scoreDisplay.style.margin = "0 40px";
+            });
+        }
 
-        function playerButtonSelection (event) {
-
-            if (round === 1) {
-                header.style.justifyContent = "space-between";
-                scoresDisplay.forEach((scoreDisplay) => {
-                        scoreDisplay.style.width = "24vw";
-                        scoreDisplay.style.fontSize = "2vw";
-                        scoreDisplay.style.margin = "0 40px";
-                    }
-                );
-            }
-
-            if (round <= 5) {
-                display.removeChild(displayMsg);
-                h1.style.fontSize = "5vw";
-                h1.textContent = "ROUND " + round;
-                playerSelection = event.target.textContent.toLowerCase();
-                computerSelection = getComputerChoice();
-                playRound(playerSelection, computerSelection, scores);
-                displayMsg.textContent = playerSelection.toUpperCase() + "\tvs.\t" + 
-                    computerSelection.toUpperCase();
-                displayMsg.style.fontSize = "6vw";
-                display.appendChild(displayMsg);
-                playerScore.textContent = scores[0];
-                compScore.textContent = scores[1];
-                round++;
-            }
+        if (round <= 5) {
+            display.removeChild(displayMsg);
+            h1.style.fontSize = "5vw";
+            h1.textContent = "ROUND " + round;
+            playerSelection = event.target.textContent.toLowerCase();
+            computerSelection = getComputerChoice();
+            playRound(playerSelection, computerSelection, scores);
+            displayMsg.textContent = playerSelection.toUpperCase() + "\tvs.\t" + 
+            computerSelection.toUpperCase();
+            displayMsg.style.fontSize = "6vw";
+            display.appendChild(displayMsg);
+            playerScore.textContent = scores[0];
+            compScore.textContent = scores[1];
+            round++;
+        }
 
             if (round > 5) {
                 
