@@ -78,7 +78,7 @@ function game () {
     playAgain.textContent = "PLAY AGAIN?";
     playAgain.classList.add("play-again");
     btnContainer.classList.add("btnContainer");
-    
+
     btnContainer.appendChild(playAgain);
 
     function playerButtonSelection (event) {
@@ -145,38 +145,25 @@ function game () {
     
         }
     
-        rock.addEventListener('click', playerButtonSelection);
-        paper.addEventListener('click', playerButtonSelection);
-        scissors.addEventListener('click', playerButtonSelection);
-
-        rock.addEventListener('mouseover', (event) => {
-            event.target.style.border = "solid 7px plum";
-            
-        });
-        
-        rock.addEventListener('mouseout', (event) => {
-            event.target.style.removeProperty("border");
-        });
-
-        paper.addEventListener('mouseover', (event) => {
-            event.target.style.border = "solid 7px plum";
-            
-        });
-        
-        paper.addEventListener('mouseout', (event) => {
-            event.target.style.removeProperty("border");
-        });
-
-        scissors.addEventListener('mouseover', (event) => {
-            event.target.style.border = "solid 7px plum";
-            
-        });
-        
-        scissors.addEventListener('mouseout', (event) => {
-            event.target.style.removeProperty("border");
+        container.addEventListener('mouseover', (event) => {
+            if (event.target.nodeName === "BUTTON") {
+                event.target.addEventListener('click', playerButtonSelection);
+            }
         });
         //paper.addEventListener('click', playerButtonSelection);
         //scissors.addEventListener('click', playerButtonSelection);
+
+        container.addEventListener('mouseover', (event) => {
+            if (event.target.nodeName === "BUTTON") {
+                event.target.style.border = "solid 16px plum";
+            }
+        });
+
+        container.addEventListener('mouseout', (event) => {
+            if (event.target.nodeName === "BUTTON") {
+                event.target.style.removeProperty("border");
+            }
+        });
         
         /*let continuePlay = prompt("Do you want to try again? Enter YES or NO\n");
         continuePlay = continuePlay.toLowerCase();
