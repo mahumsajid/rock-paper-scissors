@@ -80,3 +80,17 @@ button {
 .player-selection {
     background-color: darkgray;
 }
+
+.play-again {
+    display: block;
+    background-color: plum;
+    height: 22vh;
+    width: 80%;
+    font-size: 7vw;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

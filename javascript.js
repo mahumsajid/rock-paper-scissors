@@ -74,6 +74,16 @@ function game () {
     let h1 = document.querySelector("h1");
     let scoresDisplay = document.querySelectorAll(".score");
     let header = document.querySelector("header");
+    let body = document.querySelector("body");
+    let playerScore = document.querySelector(".player-score");
+    let compScore = document.querySelector(".comp-score");
+    let playAgain = document.createElement("button");
+    let btnContainer = document.createElement("div");
+    playAgain.textContent = "PLAY AGAIN?";
+    playAgain.classList.add("play-again");
+    btnContainer.classList.add("btnContainer");
+    btnContainer.appendChild(playAgain);
+
     
 
     //allow to continuously play game until player decides to quit
@@ -101,17 +111,16 @@ function game () {
                     computerSelection.toUpperCase();
                 displayMsg.style.fontSize = "6vw";
                 display.appendChild(displayMsg);
-                let playerScore = document.querySelector(".player-score");
-                let compScore = document.querySelector(".comp-score");
                 playerScore.textContent = scores[0];
                 compScore.textContent = scores[1];
                 round++;
             }
 
             if (round > 5) {
-                rock.removeEventListener("click", playerButtonSelection);
-                paper.removeEventListener("click", playerButtonSelection);
-                scissors.removeEventListener("click", playerButtonSelection);
+                
+                //container.removeEventListener("click", playerButtonSelection);
+                //paper.removeEventListener("click", playerButtonSelection);
+                //scissors.removeEventListener("click", playerButtonSelection);
 
                 setTimeout(() => {
                     displayMsg.style.fontSize = "7vw";
@@ -122,19 +131,59 @@ function game () {
                     } else {
                         displayMsg.textContent = "It's a Tie!";
                     }
-                }, 1350);
+                    container.remove();
+                    body.appendChild(btnContainer);
 
-                //display.appendChild(displayMsg);
-                //continuePlay();
+                }, 1200);
+
+                playAgain.addEventListener("click", () => {
+                    btnContainer.remove();
+                    body.appendChild(container);
+                    round = 1;
+                    scores[0] = 0;
+                    scores[1] = 0;
+                    displayMsg.textContent = "Best out of 5\r\nSelect Rock, Paper, or Scissors to Start";
+                    displayMsg.style.fontSize = "3.5vw";
+                    h1.textContent = "ROUND " + round;
+                    playerScore.textContent = scores[0];
+                    compScore.textContent = scores[1];
+                });
             } 
-    
-            console.log(round);
     
         }
     
         rock.addEventListener('click', playerButtonSelection);
         paper.addEventListener('click', playerButtonSelection);
         scissors.addEventListener('click', playerButtonSelection);
+
+        rock.addEventListener('mouseover', (event) => {
+            event.target.style.border = "solid 7px plum";
+            
+        });
+        
+        rock.addEventListener('mouseout', (event) => {
+            event.target.style.removeProperty("border");
+        });
+
+        paper.addEventListener('mouseover', (event) => {
+            event.target.style.border = "solid 7px plum";
+            
+        });
+        
+        paper.addEventListener('mouseout', (event) => {
+            event.target.style.removeProperty("border");
+        });
+
+        scissors.addEventListener('mouseover', (event) => {
+            event.target.style.border = "solid 7px plum";
+            
+        });
+        
+        scissors.addEventListener('mouseout', (event) => {
+            event.target.style.removeProperty("border");
+        });
+        //paper.addEventListener('click', playerButtonSelection);
+        //scissors.addEventListener('click', playerButtonSelection);
         
         /*let continuePlay = prompt("Do you want to try again? Enter YES or NO\n");
         continuePlay = continuePlay.toLowerCase();
