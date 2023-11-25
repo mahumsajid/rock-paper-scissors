@@ -110,8 +110,9 @@ function game () {
             round++;
         }
 
-        if (round > 5) {
-
+        if (round === 6) {
+            
+            round++;
             setTimeout(() => {
                 
                 if (scores[0] > scores[1]) {
@@ -123,6 +124,7 @@ function game () {
                 }
                 displayMsg.style.fontSize = "7vw";
 
+                if (event.target.style.border) event.target.style.removeProperty("border");
                 body.removeChild(container);
                 body.appendChild(btnContainer);
 
@@ -144,6 +146,7 @@ function game () {
         }
     });
 
+    
     container.addEventListener('mouseout', (event) => {
         if (event.target.nodeName === "BUTTON") {
             event.target.style.removeProperty("border");
