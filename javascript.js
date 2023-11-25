@@ -21,14 +21,14 @@ function playRound (playerSelection, computerSelection, scores) {
     (playerSelection === "paper" && computerSelection === "rock") ||
     (playerSelection === "scissors" && computerSelection === "paper")) {
         
-        //add to player's score by 1
+        //add to player's score
         scores[0] = scores[0] + 1;
 
     } else if ((playerSelection === "rock" && computerSelection === "paper") || 
     (playerSelection === "paper" && computerSelection === "scissors") ||
     (playerSelection === "scissors" && computerSelection === "rock")) {
             
-        //add to computer's score by 1
+        //add to computer's score
         scores[1] = scores[1] + 1;
         
     }
@@ -94,98 +94,76 @@ function game () {
         }
 
         if (round <= 5) {
-            display.removeChild(displayMsg);
             h1.style.fontSize = "5vw";
             h1.textContent = "ROUND " + round;
+            
             playerSelection = event.target.textContent.toLowerCase();
             computerSelection = getComputerChoice();
             playRound(playerSelection, computerSelection, scores);
+            
             displayMsg.textContent = playerSelection.toUpperCase() + "\tvs.\t" + 
             computerSelection.toUpperCase();
             displayMsg.style.fontSize = "6vw";
-            display.appendChild(displayMsg);
+            
             playerScore.textContent = scores[0];
             compScore.textContent = scores[1];
             round++;
         }
 
-            if (round > 5) {
+        if (round > 5) {
+
+            setTimeout(() => {
                 
-                //container.removeEventListener("click", playerButtonSelection);
-                //paper.removeEventListener("click", playerButtonSelection);
-                //scissors.removeEventListener("click", playerButtonSelection);
+                if (scores[0] > scores[1]) {
+                    displayMsg.textContent = "You Win!";
+                } else if (scores[0] < scores[1]) {
+                    displayMsg.textContent = "You Lose :(";
+                } else {
+                    displayMsg.textContent = "It's a Tie!";
+                }
+                displayMsg.style.fontSize = "7vw";
 
-                setTimeout(() => {
-                    displayMsg.style.fontSize = "7vw";
-                    if (scores[0] > scores[1]) {
-                        displayMsg.textContent = "You Win!";
-                    } else if (scores[0] < scores[1]) {
-                        displayMsg.textContent = "You Lose :(";
-                    } else {
-                        displayMsg.textContent = "It's a Tie!";
-                    }
-                    container.remove();
-                    body.appendChild(btnContainer);
+                body.removeChild(container);
+                body.appendChild(btnContainer);
 
-                }, 1200);
+            }, 1100);
 
-                playAgain.addEventListener("click", () => {
-                    btnContainer.remove();
-                    body.appendChild(container);
-                    round = 1;
-                    scores[0] = 0;
-                    scores[1] = 0;
-                    displayMsg.textContent = "Best out of 5\r\nSelect Rock, Paper, or Scissors to Start";
-                    displayMsg.style.fontSize = "3.5vw";
-                    h1.textContent = "ROUND " + round;
-                    playerScore.textContent = scores[0];
-                    compScore.textContent = scores[1];
-                });
-            } 
+        } 
+
+    }
     
+    container.addEventListener('mouseover', (event) => {
+        if (event.target.nodeName === "BUTTON") {
+            event.target.addEventListener('click', playerButtonSelection);
         }
+    });
     
-        container.addEventListener('mouseover', (event) => {
-            if (event.target.nodeName === "BUTTON") {
-                event.target.addEventListener('click', playerButtonSelection);
-            }
-        });
-        //paper.addEventListener('click', playerButtonSelection);
-        //scissors.addEventListener('click', playerButtonSelection);
-
-        container.addEventListener('mouseover', (event) => {
-            if (event.target.nodeName === "BUTTON") {
-                event.target.style.border = "solid 16px plum";
-            }
-        });
-
-        container.addEventListener('mouseout', (event) => {
-            if (event.target.nodeName === "BUTTON") {
-                event.target.style.removeProperty("border");
-            }
-        });
-        
-        /*let continuePlay = prompt("Do you want to try again? Enter YES or NO\n");
-        continuePlay = continuePlay.toLowerCase();
-
-        if (continuePlay === "no") {
-            play = false;
+    container.addEventListener('mouseover', (event) => {
+        if (event.target.nodeName === "BUTTON") {
+            event.target.style.border = "solid 16px plum";
         }
-        */
-        
-}
+    });
 
-function continuePlay () {
-
-    let playAgain = document.createElement("button");
-    let display = document.querySelector(".display");
-
-    playAgain.textContent = "Play Again?";
-
-    display.appendChild(playAgain);
-
-    playAgain.addEventListener("click", game);
+    container.addEventListener('mouseout', (event) => {
+        if (event.target.nodeName === "BUTTON") {
+            event.target.style.removeProperty("border");
+        }
+    });
     
+    //reset scores and text
+    playAgain.addEventListener("click", () => {
+        body.removeChild(btnContainer);
+        body.appendChild(container);
+        round = 1;
+        scores[0] = 0;
+        scores[1] = 0;
+        displayMsg.textContent = "Best out of 5\r\nSelect Rock, Paper, or Scissors to Start";
+        displayMsg.style.fontSize = "3.5vw";
+        h1.textContent = "ROUND " + round;
+        playerScore.textContent = scores[0];
+        compScore.textContent = scores[1];
+    });
+        
 }
 
 game();
