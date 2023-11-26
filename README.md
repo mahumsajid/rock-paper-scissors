@@ -2,7 +2,7 @@
 
 Play Rock Paper Scissors with this interactive web page!
 
-[Live Demo Here] (mahumsajid.github.io/rock-paper-scissors)
+[Live Demo Here] (https://mahumsajid.github.io/rock-paper-scissors/)
 
 This game allows you to play 5 rounds of rock paper scissors against a computer.
 
